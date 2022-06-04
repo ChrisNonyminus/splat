@@ -11,6 +11,7 @@ from capstone import (
     CS_ARCH_MIPS,
     CS_MODE_MIPS64,
     CS_MODE_BIG_ENDIAN,
+    CS_MODE_MIPS3,
     CS_MODE_MIPS32,
     CS_MODE_LITTLE_ENDIAN,
     CsInsn,
@@ -66,6 +67,8 @@ class CommonSegCodeSubsegment(Segment):
 
     if options.get_endianess() == "big":
         capstone_mode = CS_MODE_MIPS64 | CS_MODE_BIG_ENDIAN
+    elif options.get_platform() == "ps2":
+        capstone_mode = CS_MODE_MIPS64 | CS_MODE_MIPS3 | CS_MODE_LITTLE_ENDIAN
     else:
         capstone_mode = CS_MODE_MIPS32 | CS_MODE_LITTLE_ENDIAN
 
